@@ -297,7 +297,15 @@ src="https://www.facebook.com/tr?id=1904366980442461&ev=PageView&noscript=1"
       <label class="field-label" for="content">
         <span class="req">必須</span>相談したい課題・内容
       </label>
-      <textarea class="field-textarea" id="content" name="相談内容" placeholder="例）ChatGPTを導入したが誰も使わなくなった。何から始めればいいかわからない。費用対効果を経営層に説明したい。など、どんな内容でも構いません。" required></textarea>
+      <select class="field-select" id="content" name="相談内容" required>
+        <option value="" disabled selected>選択してください</option>
+        <option>ChatGPT等を導入したが定着しない</option>
+        <option>何から始めればいいかわからない</option>
+        <option>チームに広がらない・自分だけ使っている</option>
+        <option>費用対効果を経営層に説明したい</option>
+        <option>業務改善したいが時間がない</option>
+        <option>その他</option>
+      </select>
       <p class="error-msg" id="err-content">相談内容を入力してください</p>
     </div>
 
@@ -319,28 +327,6 @@ src="https://www.facebook.com/tr?id=1904366980442461&ev=PageView&noscript=1"
         <input class="field-input" type="tel" id="tel" name="電話番号" placeholder="090-0000-0000">
       </div>
     </div>
-
-    <!-- 希望日時 -->
-    <div class="field-group">
-      <label class="field-label">
-        <span class="req">必須</span>ご希望の日時（第3希望まで）
-      </label>
-      <div class="time-group">
-        <p class="time-title">平日・土日いずれも対応可 ／ 時間帯の目安をご記入ください</p>
-        <div class="time-row">
-          <span class="time-num">第1希望</span>
-          <input class="field-input" type="text" name="希望日時_第1希望" placeholder="例）4/15（火）10:00〜12:00" required>
-        </div>
-        <div class="time-row">
-          <span class="time-num">第2希望</span>
-          <input class="field-input" type="text" name="希望日時_第2希望" placeholder="例）4/17（木）14:00以降">
-        </div>
-        <div class="time-row">
-          <span class="time-num">第3希望</span>
-          <input class="field-input" type="text" name="希望日時_第3希望" placeholder="例）4/18（金）いつでも">
-        </div>
-      </div>
-      <p class="error-msg" id="err-time">第1希望を入力してください</p>
     </div>
 
     <!-- SUBMIT -->
@@ -422,18 +408,6 @@ document.getElementById('applyForm').addEventListener('submit', function(e){
       err.classList.remove('show');
     }
   });
-
-  // 第1希望チェック
-  const t1 = document.querySelector('[name="希望日時_第1希望"]');
-  const errT = document.getElementById('err-time');
-  if(!t1.value.trim()){
-    t1.classList.add('error');
-    errT.classList.add('show');
-    valid = false;
-  } else {
-    t1.classList.remove('error');
-    errT.classList.remove('show');
-  }
 
   if(!valid){
     e.preventDefault();
